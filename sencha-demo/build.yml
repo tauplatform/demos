@@ -1,0 +1,45 @@
+#sdk: "/Users/MOHUS/.rvm/gems/ruby-1.9.3-p547/gems/tauplatform-1.0.1"
+sdkversion: 1.0.1
+name: sencha-demo
+version: 1.0
+vendor: tau
+build: debug
+applog: rholog.txt
+iphone:
+  configuration: Release
+  sdk: iphonesimulator8.4
+  provisionprofile:
+  codesignidentity: iPhone Developer
+  entitlements: ""
+  BundleIdentifier: com.rhomobile.sencha-demo
+  BundleURLScheme: sencha-demo
+  production:
+    ipa_itunesartwork_image: "./production/iTunesArtwork.png"  
+wp8:
+  productid: '81cccd40-31b5-0133-aedf-64ce8f4683b0'
+android:
+  #manifest_template: 'AndroidManifest.erb'
+  version: 2.3.3
+  # Note: in order to simplify debugging only app messages and system channels with priority informative and higher, and any errors are enabled by default
+  logcatFilter: APP:I StrictMode:I DEBUG:I *:E
+  capabilities:
+  - network_state
+  - sdcard
+  production:
+    certificate: /Users/MOHUS/Android_sertificates/mohus.keystore
+    password: "h92wyh92wy"
+    alias: "mohus"
+
+wm:
+  #sdk: "MC3000c50b (ARMV4I)"
+  #sdk: "Windows Mobile 6.5.3 Professional DTK (ARMV4I)"
+
+win32:
+  deployqt: 1
+  deploymsvc: 1
+
+extensions: []
+
+rhobundle:
+  exclude_items:
+  - thumb.db
