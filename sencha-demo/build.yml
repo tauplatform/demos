@@ -25,10 +25,6 @@ android:
   capabilities:
   - network_state
   - sdcard
-  production:
-    certificate: /Users/MOHUS/Android_sertificates/mohus.keystore
-    password: "h92wyh92wy"
-    alias: "mohus"
 
 wm:
   #sdk: "MC3000c50b (ARMV4I)"
