@@ -1,0 +1,19 @@
+Native Extension control for long list Demo.
+
+In that application we have a test page where user can open native
+long list control and select item from list. When user select item -
+application return to web view and show selected info.
+
+We have a list with 10000 items.
+Each item contain image and 3 text field.
+
+data for items requested from native control by demand. Ruby control
+prepare data in XML/JSON format.
+
+I add 10 different images to application , but now each item load
+image separately without any caching - in this case application can
+have unique image for each item without any perfomance losses.
+
+As I say before - native control works without any visual pause.
+
+Native extension prepared for iOS and Android.

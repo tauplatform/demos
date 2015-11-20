@@ -1,0 +1,31 @@
+<table width="100%">
+<tr>
+<td rowspan=2>
+<img src="<%= '/public/images/custom/Car-32.png' %>"/>
+</td>
+<td>
+<b><div id='item_title'>Title ( <%= @item.to_s %> )</div></b>
+</td>
+<td rowspan=2 align="right">
+<b><div id='item_number'>[ <%= @item.to_s %> ]</div></b>
+</td>
+</tr>
+<tr>
+<td>
+<div id='item_subtitle'>Subtitle ( <%= @item.to_s %> )</div>
+</td>
+</tr>
+</table>
+
+<script type="text/javascript">
+
+function nlist_set_data(jsonData) {
+   data = JSON.parse(jsonData);
+   document.getElementById('item_title').innerHTML = data.title;
+   document.getElementById('item_subtitle').innerHTML = data.subtitle;
+   document.getElementById('item_number').innerHTML = data.number;
+}
+
+</script>
+
+
