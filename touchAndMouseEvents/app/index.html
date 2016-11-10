@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>TouchAndMouseEvents</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <link rel="stylesheet" href="/public/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+
+    <script type="text/javascript" src="/public/jquery/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/public/api/rhoapi-modules.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div id="controls" class="row" style="margin:10px;">
+        <button class="btn btn-primary btn-xs">Clear log</button>
+        <label>
+            <input id="preventDefault" type="checkbox">preventDefault()
+        </label>
+        </form>
+    </div>
+
+    <div id="console" class="alert alert-default" style="overflow-y: scroll">
+    </div>
+
+    <div id="comment" class="alert alert-warning">Touch'n'scroll items below</div>
+
+    <div id="itemList"  style="overflow-y: scroll">
+        <div class="list-group"></div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        var documentHeight = $(document).height();
+        var titleHeight = $("#controls").height();
+        var commentHeight = $("#comment").height();
+        console.log(documentHeight, titleHeight, commentHeight)
+        var container = document.getElementsByClassName("container-fluid")[0];
+        var eventLog = document.getElementById("console");
+        var itemList = document.getElementById("itemList");
+        container.style.height = documentHeight + "px";
+        eventLog.style.height = ((documentHeight - (titleHeight + commentHeight)) / 2) + "px";
+        itemList.style.height = ((documentHeight - (titleHeight + commentHeight)) / 2) + "px";
+
+        var list = document.getElementById("itemList");
+        for (var i = 1; i <= 100; i++) {
+            var item = document.createElement("a");
+            item.className = "list-group-item";
+            item.innerHTML = "Item " + i.toString();
+            list.appendChild(item);
+        }
+
+        var eventHandler = function (event) {
+            var checkedValue = $('#preventDefault:checked').val();
+            var eventInfo = document.createElement("p");
+            eventInfo.innerHTML = event.type;
+            eventLog.appendChild(eventInfo);
+            eventLog.scrollTop = eventLog.scrollHeight;
+            console.log(checkedValue);
+            return !checkedValue;
+        };
+
+        $("#itemList").bind("touchstart touchmove touchend mouseover mousemove mousedown mouseup scroll click", eventHandler);
+        $("button").on("click", function () {
+            eventLog.innerHTML = ""
+        });
+    });
+</script>
+
+</body>
+
+</html>
