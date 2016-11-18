@@ -1,0 +1,40 @@
+#sdk: "C:/RhoMobileSuite5.5.0/ruby/lib/ruby/gems/1.9.1/gems/rhodes-5.5.0.6"
+sdkversion: 5.5.0
+name: customback
+version: 1.0
+vendor: rhomobile
+build: debug
+applog: rholog.txt
+iphone:
+  configuration: Release
+  sdk: iphonesimulator10.0
+  #provisionprofile:
+  #codesignidentity:
+  #entitlements:
+  BundleIdentifier: com.rhomobile.customback
+  BundleURLScheme: customback
+  production:
+    ipa_itunesartwork_image: "./production/iTunesArtwork.png"
+  # Note: Specifies the URL schemes the app is able to call using Rho.System.runApplication
+  #ApplicationQueriesSchemes: ["scheme1", "scheme2"]
+wp8:
+  productid: 'a7389c60-8fb3-0134-632e-102b343523ec'
+android:
+  #manifest_template: 'AndroidManifest.erb'
+  version: 4.1.0
+  # Note: in order to simplify debugging only app messages and system channels with priority informative and higher, and any errors are enabled by default
+  logcatFilter: APP:I StrictMode:I DEBUG:I *:E
+
+wm:
+  #sdk: "MC3000c50b (ARMV4I)"
+  #sdk: "Windows Mobile 6.5.3 Professional DTK (ARMV4I)"
+
+win32:
+  deployqt: 1
+  deploymsvc: 1
+
+extensions: []
+
+rhobundle:
+  exclude_items:
+  - thumb.db

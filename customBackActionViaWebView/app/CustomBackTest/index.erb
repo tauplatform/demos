@@ -1,0 +1,10 @@
+<div data-role="page">
+  <div data-role="header" data-position="inline">
+    <h1>Test custom back action</h1>
+  </div>
+
+  <form action="<%= url_for :action => :do_navigate %>">
+    <div><input name="back_url" type="text" placeholder="enter back url to return from action"/></div>
+    <input type="submit" value="Navigate to test action via WebView.navigate"/>
+  </form>
+</div>
