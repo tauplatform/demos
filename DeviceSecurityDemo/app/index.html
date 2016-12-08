@@ -19,6 +19,27 @@
     <script type="text/javascript" src="index.js"></script>
 </head>
 
+<style>
+
+  .good {
+    color: green;
+  }
+  
+  .bad {
+    color: red;
+  }
+  
+  .info {
+    color: grey;
+  }
+
+  .row {
+    margin-bottom: 1em;
+  }
+  
+</style>
+
+
 <body>
 <div class="container-fluid">
 
@@ -38,21 +59,120 @@
         <strong id="title"></strong>&nbsp;<span id="text"></span>
     </div>
 
-    <div>Application container signature</div>
-    <div id="signature" style="color:red">
-    
+    <div class="row">
+        <div>Is device secured?</div>
+        <div id="is_secured">    
+        </div>
     </div>
+
+
+    <div class="row">
+        <div>Application container signature</div>
+        <div id="signature">    
+        </div>
+    </div>        
+
+    <div class="row">
+        <div>Allowed signatures</div>
+        <div id="allowed_signatures">    
+        </div>
+    </div>    
+
+    <div class="row">
+        <div>Is device jailbroken?</div>
+        <div id="is_jailbroken"">    
+        </div>
+    </div>        
+
+    <div class="row">    
+        <div>Is device rooted?</div>
+        <div id="is_rooted">    
+        </div>
+    </div>    
+
+    <div class="row">    
+        <div>Is running on simulator?</div>
+        <div id="is_simulator">    
+        </div>
+    </div>    
+
+    <div class="row">    
+        <div>Is running in debug mode?</div>
+        <div id="is_debug">    
+        </div>
+    </div>    
+
+    <div class="row">
+        <div>Installer package name</div>
+        <div id="installer_package">    
+        </div>
+    </div>    
+
+    <div class="row">
+        <div>Allowed installer packages</div>
+        <div id="allowed_installers">    
+        </div>
+    </div>    
+
+    <div class="row hidden">
+        <div>Errors:</div>
+        <div id="errors" class="bad"></div>
+    </div>
+
 </div>
 
 <script>
     window.addEventListener("load", function () {
-        var page = new App.IndexPage();
-        page.init();
+        try {
+            var page = new App.IndexPage();
+            page.init();
 
-        var signatures = Rho.DeviceSecurity.getAppCertificateSignatures();
+            var signatures = Rho.DeviceSecurity.getAppCertificateSignatures();
 
-        for ( var i = 0; i < signatures.length; ++i ) {
-            signature.innerHTML += "<p>" + signatures[i] + "</p>";
+            for ( var i = 0; i < signatures.length; ++i ) {
+                signature.innerHTML += "<p>" + signatures[i] + "</p>";
+            }
+            signature.className = "info";
+
+            var good = Rho.DeviceSecurity.isDeviceSecured();
+            is_secured.innerHTML = good;
+            is_secured.className = good?"good":"bad";
+
+            good = Rho.DeviceSecurity.isDeviceJailbroken();
+            is_jailbroken.innerHTML = good;
+            is_jailbroken.className = good?"bad":"good";
+
+            good = Rho.DeviceSecurity.isDeviceRooted();
+            is_rooted.innerHTML = good;
+            is_rooted.className = good?"bad":"good";
+
+            good = Rho.DeviceSecurity.isRunOnSimulator();
+            is_simulator.innerHTML = good;
+            is_simulator.className = good?"bad":"good";
+
+            good = Rho.DeviceSecurity.isDebugMode();
+            is_debug.innerHTML = good;
+            is_debug.className = good?"bad":"good";
+            
+            installer_package.innerHTML = Rho.DeviceSecurity.getInstallerPackageName();
+            installer_package.className = "info";
+
+            var allowedSignatures = Rho.DeviceSecurity.getAllowedCertificateSignatures();
+
+            for ( var i = 0; i < allowedSignatures.length; ++i ) {
+                allowed_signatures.innerHTML += "<p>" + allowedSignatures[i] + "</p>";
+            }
+            allowed_signatures.className = "info";
+
+            var allowedInstallers = Rho.DeviceSecurity.getAllowedInstallerPackages();
+
+            for ( var i = 0; i < allowedInstallers.length; ++i ) {
+                allowed_installers.innerHTML += "<p>" + allowedInstallers[i] + "</p>";
+            }
+            allowed_installers.className = "info";
+        } catch ( e ) {
+            errors.innerHTML = "<p>"+e.name+"</p>"+"<p>"+e.message+"</p>"+"<p>"+e.stack+"</p>";
+            errors.parentNode.className = "row";
         }
     });
 </script>

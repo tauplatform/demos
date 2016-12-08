@@ -1,4 +1,4 @@
-#sdk: "D:/work/Tau/repos/rhodes"
+sdk: "D:/work/Tau/repos/rhodes"
 sdkversion: 5.5.0
 name: DeviceSecurityDemo
 version: 1.0
@@ -25,6 +25,17 @@ android:
   version: 4.1.0
   # Note: in order to simplify debugging only app messages and system channels with priority informative and higher, and any errors are enabled by default
   logcatFilter: APP:I StrictMode:I DEBUG:I *:E
+
+  security:
+    allowed_cert_signatures:
+    - "testSignature1"
+    - "testSignature2"
+    - "testSignature3"
+
+    allowed_installers:
+    - "installer1"
+    - "installer2"
+    - "installer3"
 
 wm:
   #sdk: "MC3000c50b (ARMV4I)"
