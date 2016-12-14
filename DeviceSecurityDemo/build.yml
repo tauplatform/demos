@@ -1,4 +1,4 @@
-sdk: "D:/work/Tau/repos/rhodes"
+sdk: "../../repos/rhodes"
 sdkversion: 5.5.0
 name: DeviceSecurityDemo
 version: 1.0
