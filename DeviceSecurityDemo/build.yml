@@ -21,13 +21,19 @@ iphone:
 wp8:
   productid: 'c1306b81-9deb-0134-6331-102b343523ec'
 android:
-  #manifest_template: 'AndroidManifest.erb'
+  manifest_template: 'AndroidManifest.erb'
   version: 4.1.0
   # Note: in order to simplify debugging only app messages and system channels with priority informative and higher, and any errors are enabled by default
   logcatFilter: APP:I StrictMode:I DEBUG:I *:E
 
+  production:
+    certificate: production.cert
+    password: "123456"
+    alias: "keystore.alias"
+
   security:
     allowed_cert_signatures:
+    - 4o7xYWLVqbE+lK020bKX0+wnM48=
     - "testSignature1"
     - "testSignature2"
     - "testSignature3"
@@ -36,6 +42,10 @@ android:
     - "installer1"
     - "installer2"
     - "installer3"
+
+  abis:
+  - arm
+  - x86
 
 wm:
   #sdk: "MC3000c50b (ARMV4I)"

@@ -79,6 +79,12 @@
     </div>    
 
     <div class="row">
+        <div>Have any signature issues?</div>
+        <div id="signature_issues">    
+        </div>
+    </div>    
+
+    <div class="row">
         <div>Is device jailbroken?</div>
         <div id="is_jailbroken"">    
         </div>
@@ -113,6 +119,13 @@
         <div id="allowed_installers">    
         </div>
     </div>    
+
+    <div class="row">
+        <div>Have any installer issues?</div>
+        <div id="installer_issues">    
+        </div>
+    </div>    
+
 
     <div class="row hidden">
         <div>Errors:</div>
@@ -170,6 +183,15 @@
                 allowed_installers.innerHTML += "<p>" + allowedInstallers[i] + "</p>";
             }
             allowed_installers.className = "info";
+
+            good = Rho.DeviceSecurity.haveAnySignatureIssues();
+            signature_issues.innerHTML = good;
+            signature_issues.className = good?"bad":"good";
+
+            good = Rho.DeviceSecurity.haveAnyInstallerIssues();
+            installer_issues.innerHTML = good;
+            installer_issues.className = good?"bad":"good";
+
         } catch ( e ) {
             errors.innerHTML = "<p>"+e.name+"</p>"+"<p>"+e.message+"</p>"+"<p>"+e.stack+"</p>";
             errors.parentNode.className = "row";
