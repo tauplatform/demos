@@ -1,0 +1,48 @@
+sdkversion: 6.0.0
+name: PushTest
+version: 1.0
+vendor: rhomobile
+rho_app_id: com.rhomobile.pushtest
+build: debug
+applog: rholog.txt
+
+capabilities:
+  - push
+
+iphone:
+  configuration: Debug
+  sdk: latest
+  provisioning_style: Manual
+  provisionprofile: "your_mobileprovision_name"
+  development_team: "your team ID"
+  codesignidentity: "iPhone Developer"
+  BundleIdentifier: com.tau.push.fcmtest
+  BundleURLScheme: pushtest
+  extensions: ["fcm-push"]
+
+
+wp8:
+  productid: 'f4b641c0-48ca-0135-3e28-3c075460fec0'
+
+android:
+  version: 4.1.0
+  logcatFilter: APP:I StrictMode:I DEBUG:I *:E
+  fcmSenderID: "946233903142"
+  fcmAppID: "1:946233903142:android:f30764748b001126"
+  extensions: 
+    - fcm-push
+
+
+wm:
+  extensions:
+    - webkit
+
+win32:
+  deployqt: 1
+  deploymsvc: 1
+
+extensions: ["fcm-push"]
+
+rhobundle:
+  exclude_items:
+  - thumb.db

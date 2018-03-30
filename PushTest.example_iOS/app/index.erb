@@ -1,0 +1,34 @@
+<div class="container-fluid">
+
+
+
+  <div class="row">
+    <div class="list-group">
+      <a href="#" class="list-group-item">
+        <span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+        Add link here...
+      </a>
+    </div>
+  </div>
+  <INPUT type="button" id="id_button3" value="Get Device ID in JS" name="id_button3" onClick="onGetDeviceID();"><br>
+  <INPUT type="button" id="id_button5" value="Get Device ID in Ruby" name="id_button5" onClick="onGetDeviceIDRuby();"><br>
+
+</div>
+
+
+<script type="text/javascript">
+
+
+function onGetDeviceID() {
+    var k = Rho.Push.getDeviceId();
+    alert('FacilityController : ' + k); // This is to test from JS layes
+    return false;
+}
+
+function onGetDeviceIDRuby() {
+    $.get('/app/Settings/get_device_id', {});
+    return false;
+}
+
+
+</script>
